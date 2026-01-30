@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kayb_shop/api/home.dart';
 import 'package:kayb_shop/components/Home/kb_category.dart';
 import 'package:kayb_shop/components/Home/kb_hot.dart';
 import 'package:kayb_shop/components/Home/kb_more_list.dart';
@@ -14,16 +15,16 @@ class HomeView extends StatefulWidget {
 }
 
 class HomeViewState extends State<HomeView> {
-  final List<BannerItem> _bannerList = [
-    BannerItem(
-      id: '1',
-      imgUrl: 'https://seopic.699pic.com/photo/50075/6521.jpg_wh1200.jpg',
-    ),
-    BannerItem(
-      id: '2',
-      imgUrl: 'https://seopic.699pic.com/photo/50118/7084.jpg_wh1200.jpg',
-    ),
-    BannerItem(id: '3', imgUrl: 'https://p7.qhimg.com/t0190c170fcad30e29b.png'),
+  List<BannerItem> _bannerList = [
+    // BannerItem(
+    //   id: '1',
+    //   imgUrl: 'https://seopic.699pic.com/photo/50075/6521.jpg_wh1200.jpg',
+    // ),
+    // BannerItem(
+    //   id: '2',
+    //   imgUrl: 'https://seopic.699pic.com/photo/50118/7084.jpg_wh1200.jpg',
+    // ),
+    // BannerItem(id: '3', imgUrl: 'https://p7.qhimg.com/t0190c170fcad30e29b.png'),
   ];
 
   // 获取滚动容器的内容
@@ -58,6 +59,18 @@ class HomeViewState extends State<HomeView> {
       SliverToBoxAdapter(child: SizedBox(height: 10)),
       KbMoreList(), // 无限滚动列表
     ];
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getBannderList();
+  }
+
+  void _getBannderList() async {
+    _bannerList = await getBannerListAPI();
+    setState(() {});
   }
 
   @override

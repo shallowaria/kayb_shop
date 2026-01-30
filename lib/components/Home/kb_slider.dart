@@ -14,6 +14,7 @@ class KbSliderState extends State<KbSlider> {
   final CarouselSliderController _controller =
       CarouselSliderController(); // 控制轮播图跳转的控制器
   int _currentIndex = 0;
+
   Widget _getSlider() {
     // 获取屏幕宽度
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -30,10 +31,10 @@ class KbSliderState extends State<KbSlider> {
         ),
       ),
       options: CarouselOptions(
-        autoPlayInterval: Duration(seconds: 5),
+        // autoPlay: true,
+        // autoPlayInterval: Duration(seconds: 5),
         height: 300,
         viewportFraction: 1.0,
-        autoPlay: true,
         onPageChanged: (int index, reason) {
           setState(() {
             _currentIndex = index;
