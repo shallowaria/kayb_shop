@@ -11,3 +11,33 @@ class BannerItem {
 
 // 轮播图的具体类型
 // flutter中没有隐式转化
+
+// 根据 json 编写 class 对象和工厂转换函数CategoryItem
+class CategoryItem {
+  final String id;
+  final String name;
+  final String picture;
+  final List<CategoryItem>? children;
+
+  CategoryItem({
+    required this.id,
+    required this.name,
+    required this.picture,
+    this.children,
+  });
+
+  factory CategoryItem.fromJson(Map<String, dynamic> json) {
+    return CategoryItem(
+      id: json['id'] ?? "",
+      name: json['name'] ?? "",
+      picture: json['picture'] ?? "",
+      children: json['children'] != null
+          ? (json['children'] as List)
+                .map(
+                  (item) => CategoryItem.fromJson(item as Map<String, dynamic>),
+                )
+                .toList()
+          : null,
+    );
+  }
+}

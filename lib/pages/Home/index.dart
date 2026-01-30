@@ -15,6 +15,7 @@ class HomeView extends StatefulWidget {
 }
 
 class HomeViewState extends State<HomeView> {
+  List<CategoryItem> _categoryList = [];
   List<BannerItem> _bannerList = [
     // BannerItem(
     //   id: '1',
@@ -35,7 +36,7 @@ class HomeViewState extends State<HomeView> {
       //SliverGrid 和 SliverList只能纵向排列
       // 放置分类组件
       SliverToBoxAdapter(child: SizedBox(height: 10)),
-      SliverToBoxAdapter(child: KbCategory()),
+      SliverToBoxAdapter(child: KbCategory(categoryList: _categoryList)),
 
       // 放置推荐组件
       SliverToBoxAdapter(child: SizedBox(height: 10)),
@@ -66,10 +67,18 @@ class HomeViewState extends State<HomeView> {
     // TODO: implement initState
     super.initState();
     _getBannderList();
+    _getCategoryList();
   }
 
+  // 获取轮播图列表
   void _getBannderList() async {
     _bannerList = await getBannerListAPI();
+    setState(() {});
+  }
+
+  // 获取分类列表
+  void _getCategoryList() async {
+    _categoryList = await getCategoryListAPI();
     setState(() {});
   }
 
