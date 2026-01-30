@@ -3,7 +3,7 @@ import 'package:kayb_shop/pages/Login/index.dart';
 import 'package:kayb_shop/pages/Main/index.dart';
 
 // 返回App根级组件
-Widget getRootWindet() {
+Widget getRootWidget() {
   return MaterialApp(initialRoute: "/", routes: getRootRoutes());
 }
 
